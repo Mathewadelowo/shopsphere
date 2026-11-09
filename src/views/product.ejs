@@ -1,0 +1,14 @@
+<%- include("partials/header", { title: product.name }) %>
+<div class="row g-4 bg-white rounded-3 p-3 shadow-sm">
+  <div class="col-md-6"><img class="img-fluid rounded" src="<%= product.imageUrl || 'https://placehold.co/640x420' %>" alt="<%= product.name %>"></div>
+  <div class="col-md-6">
+    <h1 class="h2"><%= product.name %></h1>
+    <p><%= product.description %></p>
+    <p class="h4"><%= money(product.priceCents) %></p>
+    <p class="text-muted">Stock available: <%= product.stock %></p>
+    <% if (product.stock > 0) { %>
+      <form method="post" action="/cart/<%= product.id %>"><button class="btn btn-dark">Add to cart</button></form>
+    <% } else { %><span class="badge text-bg-secondary">Out of stock</span><% } %>
+  </div>
+</div>
+<%- include("partials/footer") %>

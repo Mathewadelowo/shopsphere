@@ -1,0 +1,11 @@
+<%- include("partials/header", { title: "My orders" }) %>
+<h1 class="h2 mb-4">My orders</h1>
+<% if (!orders.length) { %><p>You haven't placed any orders yet.</p><% } %>
+<div class="list-group">
+  <% orders.forEach(order => { %>
+    <a class="list-group-item list-group-item-action d-flex justify-content-between" href="/orders/<%= order.id %>">
+      <span>Order <%= order.id %> · <%= order.status %></span><strong><%= money(order.totalCents) %></strong>
+    </a>
+  <% }) %>
+</div>
+<%- include("partials/footer") %>

@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: shopsphere-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: shopsphere
+      POSTGRES_PASSWORD: shopsphere1234
+      POSTGRES_DB: shopsphere
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U shopsphere -d shopsphere"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+    ports:
+      - "5432:5432"
+
+  app:
+    build: .
+    container_name: shopsphere-app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgresql://shopsphere:shopsphere_dev_password@db:5432/shopsphere?schema=public
+      SESSION_SECRET: local-compose-secret-change-me
+    ports:
+      - "3000:3000"
+
+volumes:
+  postgres_data:
