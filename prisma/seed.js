@@ -6,28 +6,28 @@ const products = [
     name: "Wireless Headphones",
     description: "Over-ear headphones with noise isolation and long battery life.",
     priceCents: 1850000,
-    imageUrl: "https://placehold.co/640x420?text=Headphones",
+    imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=640&auto=format&fit=crop&q=80",
     stock: 18
   },
   {
     name: "Mechanical Keyboard",
     description: "A compact mechanical keyboard for work and gaming.",
     priceCents: 950000,
-    imageUrl: "https://placehold.co/640x420?text=Keyboard",
+    imageUrl: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=640&auto=format&fit=crop&q=80",
     stock: 25
   },
   {
     name: "USB-C Hub",
     description: "Multiport USB-C hub with HDMI and USB 3.0 ports.",
     priceCents: 420000,
-    imageUrl: "https://placehold.co/640x420?text=USB-C+Hub",
+    imageUrl: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=640&auto=format&fit=crop&q=80",
     stock: 30
   },
   {
     name: "27-inch Monitor",
     description: "QHD monitor suitable for development and productivity.",
     priceCents: 3250000,
-    imageUrl: "https://placehold.co/640x420?text=Monitor",
+    imageUrl: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=640&auto=format&fit=crop&q=80",
     stock: 8
   }
 ];
@@ -48,4 +48,6 @@ main()
     console.error(error);
     process.exitCode = 1;
   })
-  .finally(async () => prisma.$disconnect());
+  .finally(async () => {
+    await prisma.$disconnect();
+  });
