@@ -5,7 +5,7 @@ services:
     restart: unless-stopped
     environment:
       POSTGRES_USER: shopsphere
-      POSTGRES_PASSWORD: shopsphere1234
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
       POSTGRES_DB: shopsphere
     volumes:
       - postgres_data:/var/lib/postgresql/data
@@ -27,8 +27,8 @@ services:
     environment:
       NODE_ENV: development
       PORT: 3000
-      DATABASE_URL: postgresql://shopsphere:shopsphere_dev_password@db:5432/shopsphere?schema=public
-      SESSION_SECRET: local-compose-secret-change-me
+      DATABASE_URL: postgresql://shopsphere:${DB_PASSWORD}@db:5432/shopsphere?schema=public
+      SESSION_SECRET: ${SESSION_SECRET}
     ports:
       - "3000:3000"
 
