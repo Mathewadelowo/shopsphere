@@ -73,7 +73,7 @@ jobs:
           scan-type: 'image'
           scan-ref: '${{ secrets.DOCKERHUB_USERNAME }}/shopsphere-monolith:${{ github.sha }}'
           ignore-unfixed: true
-          scanners: 'vuln, secret, misconfiguration'
+          scanners: 'vuln,secret,misconfig'
           severity: 'HIGH,CRITICAL'
           output: 'table'
 
